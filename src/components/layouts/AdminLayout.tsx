@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Tag, MapPin, LogOut, Building2, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, Tag, MapPin, LogOut, Building2, ArrowLeft, Image } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
@@ -7,6 +7,7 @@ const navItems = [
   { to: '/admin/kantone', icon: MapPin, label: 'Kantone' },
   { to: '/admin/kategorien', icon: Tag, label: 'Kategorien' },
   { to: '/admin/regeln', icon: MapPin, label: 'Abzugsregeln' },
+  { to: '/admin/sponsoren', icon: Image, label: 'Sponsoren' },
 ];
 
 export default function AdminLayout() {

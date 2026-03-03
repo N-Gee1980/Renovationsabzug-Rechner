@@ -11,6 +11,7 @@ import DashboardPage from './pages/admin/DashboardPage';
 import KantonePage from './pages/admin/KantonePage';
 import KategorienPage from './pages/admin/KategorienPage';
 import RegelnPage from './pages/admin/RegelnPage';
+import { SponsorsPage } from './pages/admin/SponsorsPage';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="kantone" element={<KantonePage />} />
             <Route path="kategorien" element={<KategorienPage />} />
             <Route path="regeln" element={<RegelnPage />} />
+            <Route path="sponsoren" element={<SponsorsPage />} />
           </Route>
         </Routes>
       </AuthProvider>

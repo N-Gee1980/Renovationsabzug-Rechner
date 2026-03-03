@@ -4,6 +4,7 @@ import { Building2, ClipboardList, Printer, ChevronDown, Info, ArrowRight } from
 import { useCantons } from '../hooks/useCantons';
 import { supabase } from '../lib/supabase';
 import { formatPercent } from '../lib/formatters';
+import { Sponsors } from '../components/Sponsors';
 import type { PropertyAge, Canton } from '../lib/types';
 
 const currentYear = new Date().getFullYear();
@@ -123,6 +124,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <Sponsors />
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24">
           <div className="max-w-2xl">

@@ -1,5 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Building2, Shield } from 'lucide-react';
+import { SponsorsBanner } from '../SponsorsBanner';
 
 export default function PublicLayout() {
   const location = useLocation();
@@ -39,6 +40,8 @@ export default function PublicLayout() {
           </div>
         )}
       </main>
+
+      {!isHome && <SponsorsBanner />}
 
       <footer className="no-print bg-white border-t border-gray-200 py-6">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center text-sm text-gray-400">
