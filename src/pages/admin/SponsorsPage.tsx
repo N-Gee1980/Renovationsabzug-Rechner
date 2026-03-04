@@ -41,11 +41,21 @@ export const SponsorsPage = () => {
   const handleSave = async () => {
     try {
       setError('');
-      if (editingId) {
+
+      const payload = {
+        name: formData.name,
+        url: formData.url,
+        image_url: formData.image_url,
+        alt_text: formData.alt_text,
+        active: formData.active,
+        order: formData.order,
+      };
+
+      if (editingId && editingId !== 'new') {
         const { error } = await supabase
           .from('sponsors')
           .update({
-            ...formData,
+            ...payload,
             updated_at: new Date().toISOString(),
           })
           .eq('id', editingId);
@@ -54,7 +64,7 @@ export const SponsorsPage = () => {
       } else {
         const { error } = await supabase
           .from('sponsors')
-          .insert([formData]);
+          .insert([payload]);
 
         if (error) throw error;
       }
@@ -68,9 +78,16 @@ export const SponsorsPage = () => {
         active: true,
         order: 0,
       });
-      fetchSponsors();
+      await fetchSponsors();
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Fehler beim Speichern';
+      let message = 'Fehler beim Speichern';
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === 'object' && err !== null && 'message' in err) {
+        message = String((err as any).message);
+      } else if (typeof err === 'object' && err !== null) {
+        message = JSON.stringify(err);
+      }
       setError(message);
       console.error('Error saving sponsor:', err);
     }
