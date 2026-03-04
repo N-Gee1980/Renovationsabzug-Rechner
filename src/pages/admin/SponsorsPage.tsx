@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, Trash2, CreditCard as Edit2, Eye, EyeOff } from 'lucide-react';
+import { Plus, Trash2, CreditCard as Edit2, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { Sponsor } from '../../hooks/useSponsors';
 
@@ -7,6 +7,7 @@ export const SponsorsPage = () => {
   const [sponsors, setSponsors] = useState<Sponsor[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [error, setError] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     url: '',
@@ -39,6 +40,7 @@ export const SponsorsPage = () => {
 
   const handleSave = async () => {
     try {
+      setError('');
       if (editingId) {
         const { error } = await supabase
           .from('sponsors')
@@ -67,8 +69,10 @@ export const SponsorsPage = () => {
         order: 0,
       });
       fetchSponsors();
-    } catch (error) {
-      console.error('Error saving sponsor:', error);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Fehler beim Speichern';
+      setError(message);
+      console.error('Error saving sponsor:', err);
     }
   };
 
@@ -102,6 +106,7 @@ export const SponsorsPage = () => {
 
   const handleCancel = () => {
     setEditingId(null);
+    setError('');
     setFormData({
       name: '',
       url: '',
@@ -150,6 +155,13 @@ export const SponsorsPage = () => {
           <h2 className="text-lg font-semibold">
             {editingId === 'new' ? 'Neuer Sponsor' : 'Sponsor bearbeiten'}
           </h2>
+
+          {error && (
+            <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              {error}
+            </div>
+          )}
 
           <div className="grid grid-cols-2 gap-4">
             <div>
