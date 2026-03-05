@@ -124,7 +124,6 @@ export default function HomePage() {
 
   return (
     <div>
-      <Sponsors />
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24">
           <div className="max-w-2xl">
@@ -348,6 +347,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Sponsors />
     </div>
   );
 }
