@@ -1,9 +1,10 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Tag, MapPin, LogOut, Building2, ArrowLeft, Image } from 'lucide-react';
+import { LayoutDashboard, Tag, MapPin, LogOut, Building2, ArrowLeft, Image, BarChart3 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
   { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
+  { to: '/admin/analytics', icon: BarChart3, label: 'Analytics' },
   { to: '/admin/kantone', icon: MapPin, label: 'Kantone' },
   { to: '/admin/kategorien', icon: Tag, label: 'Kategorien' },
   { to: '/admin/regeln', icon: MapPin, label: 'Abzugsregeln' },

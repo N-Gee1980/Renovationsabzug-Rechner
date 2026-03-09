@@ -12,11 +12,14 @@ import KantonePage from './pages/admin/KantonePage';
 import KategorienPage from './pages/admin/KategorienPage';
 import RegelnPage from './pages/admin/RegelnPage';
 import { SponsorsPage } from './pages/admin/SponsorsPage';
+import AnalyticsPage from './pages/admin/AnalyticsPage';
+import AppTracker from './components/AppTracker';
 
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <AppTracker />
         <Routes>
           <Route element={<PublicLayout />}>
             <Route index element={<HomePage />} />
@@ -33,6 +36,7 @@ export default function App() {
             }
           >
             <Route index element={<DashboardPage />} />
+            <Route path="analytics" element={<AnalyticsPage />} />
             <Route path="kantone" element={<KantonePage />} />
             <Route path="kategorien" element={<KategorienPage />} />
             <Route path="regeln" element={<RegelnPage />} />
